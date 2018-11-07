@@ -7,9 +7,12 @@ const { isAlphanumeric } = require("validator");
 const { MongoClient, ObjectId } = require("mongodb");
 const requestHandler = new RequestHandler();
 const textParser = bodyParser.text();
-const argv = require("yargs").argv;
 
-const port = argv.port || 8081;
+const PORT = process.env.PORT || 8081;
+
+app = express();
+app.use(helmet());
+app.listen(PORT);
 
 let IDSTATE = [];
 
@@ -173,9 +176,6 @@ const readMovies = db => {
   });
 };
 
-app = express();
-app.use(helmet());
-
 MongoClient.connect(
   "mongodb://raege:number1undertheheavens@ds253353.mlab.com:53353/raege",
   { useNewUrlParser: true },
@@ -188,7 +188,7 @@ MongoClient.connect(
 
     populateIds(db);
 
-    app.listen(argv.port);
+    // app.listen(process.env.PORT);
 
     // app.listen(process.env.PORT);
 
