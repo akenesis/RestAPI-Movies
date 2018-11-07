@@ -5,9 +5,11 @@ const RequestHandler = require("./RequestHandler");
 const bodyParser = require("body-parser");
 const { isAlphanumeric } = require("validator");
 const { MongoClient, ObjectId } = require("mongodb");
-const port = process.env.PORT || 3000;
 const requestHandler = new RequestHandler();
 const textParser = bodyParser.text();
+const argv = require("yargs").argv;
+
+const port = argv.port || 8081;
 
 let IDSTATE = [];
 
@@ -186,7 +188,9 @@ MongoClient.connect(
 
     populateIds(db);
 
-    app.listen(process.env.PORT);
+    app.listen(argv.port);
+
+    // app.listen(process.env.PORT);
 
     app.get("/", (req, res) => {
       res.send("API up and running");
