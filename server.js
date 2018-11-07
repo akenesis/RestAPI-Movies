@@ -112,12 +112,8 @@ const validObjKeys = text => {
 const postComment = (text, db, res, callback) => {
   const sanitizedObject = sanitize(text);
   getObjComments(text, db, comments => {
-    console.log(comments);
-
     const flattenedComments = flatten(comments.concat(sanitizedObject.comment));
-    const newComments = _.filter(flattenedComments, function(sub) {
-      return sub.length;
-    });
+    const newComments = flattenedComments.filter(e => e.length);
 
     db.collection("RestAPI-D")
       .findOneAndUpdate(
