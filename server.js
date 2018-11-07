@@ -181,7 +181,7 @@ MongoClient.connect(
     if (err) {
       return console.error(`ERROR:`, err);
     }
-    console.log(`App is connected to MongoDB server`);
+    console.log(`App now connected to MongoDB server`);
     const db = client.db("raege");
 
     populateIds(db);
