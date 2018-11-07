@@ -181,12 +181,12 @@ MongoClient.connect(
     if (err) {
       return console.error(`ERROR:`, err);
     }
-    console.log(`Connected to MongoDB server`);
+    console.log(`App is connected to MongoDB server`);
     const db = client.db("raege");
 
     populateIds(db);
 
-    app.listen(process.env.PORT, "0.0.0.0");
+    app.listen(process.env.PORT);
 
     app.get("/", (req, res) => {
       res.send("API up and running");
